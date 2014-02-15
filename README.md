@@ -4,7 +4,8 @@ Currently just 2 simple tools to make it easier to setup scheduled changes to th
 
 ## Install
 
-You need to copy the `config/aws.json.dist` file to `config/aws.json` and insert your keys.
+1. You need to copy the `config/aws.json.dist` file to `config/aws.json` and insert your keys.
+1. Run `composer install`
 
 ## Usage
 
