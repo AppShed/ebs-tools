@@ -13,11 +13,24 @@ use Monolog\Logger;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Doctrine\Common\Cache\FilesystemCache;
+use Guzzle\Cache\DoctrineCacheAdapter;
 
 $input = new ArgvInput();
 $output = new ConsoleOutput();
 
-$aws = Aws::factory(__DIR__ . '/config/aws.json');
+// Create a cache adapter that stores data on the filesystem
+$cacheAdapter = new DoctrineCacheAdapter(new FilesystemCache(__DIR__ . '/cache'));
+
+$aws = Aws::factory(__DIR__ . '/config/aws.json', [
+    'services' => [
+        'default_settings' => [
+            'params' => [
+                'credentials.cache' => $cacheAdapter
+            ]
+        ]
+    ]
+]);
 
 $logger = new Logger('appshed');
 $logger->pushHandler(
