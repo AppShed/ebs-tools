@@ -21,8 +21,14 @@ class EbsStatusCommand extends EbsCommand
             ->addOption(
                 'wait',
                 null,
+                InputOption::VALUE_NONE,
+                'Wait until its green again'
+            )
+            ->addOption(
+                'wait-time',
+                null,
                 InputOption::VALUE_OPTIONAL,
-                'Wait until its green again, you can specify the loop wait',
+                'You can specify the loop wait',
                 "5"
             );
     }
@@ -31,11 +37,12 @@ class EbsStatusCommand extends EbsCommand
     {
         $environment = $input->getArgument('environment');
         $wait = $input->getOption('wait');
+        $waitTime = $input->getOption('wait-time');
 
         try {
             do {
                 $status = $this->getStatus($environment);
-            } while ($wait && $status != 'Ready' && !sleep($wait));
+            } while ($wait && $status != 'Ready' && !sleep($waitTime));
         } catch (ElasticBeanstalkException $e) {
             $this->logger->error(
                 'Problem getting status',
