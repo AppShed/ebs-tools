@@ -63,6 +63,10 @@ class EbsStatusCommand extends EbsCommand
             ]
         );
 
+        if (!isset($result['Environments'][0])) {
+            throw new ElasticBeanstalkException('Failed to get the information');
+        }
+
         $this->logger->info(
             "Environment is {$result['Environments'][0]['Status']}",
             [
