@@ -1,0 +1,16 @@
+{
+    "name": "appshed/ebs",
+    "license": "MIT",
+    "type": "project",
+    "description": "A tool for adjusting ebs",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "require": {
+        "php": ">=5.4",
+        "symfony/console": "~2.4",
+        "aws/aws-sdk-php": "~2.5",
+        "monolog/monolog": "~1.7",
+        "symfony/monolog-bridge": "~2.4"
+    }
+}
