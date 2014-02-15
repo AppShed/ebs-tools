@@ -5,6 +5,9 @@ Currently just 2 simple tools to make it easier to setup scheduled changes to th
 ## Install
 
 1. You need to copy the `config/aws.json.dist` file to `config/aws.json` and insert your keys.
+
+    Mostly likely you will want to use the IAM policy generator and select Elastic Beanstalk Full Access.
+
 1. Run `composer install`
 
 ## Usage
